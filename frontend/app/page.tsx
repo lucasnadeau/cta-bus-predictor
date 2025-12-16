@@ -44,13 +44,19 @@ export default function Home() {
       <header className="header">
         <div className="container">
           <h1>CTA Bus Stop Predictor</h1>
+          <p style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '1.125rem', color: '#6b7280', fontWeight: '400' }}>
+            Find nearby bus stops and real-time arrival predictions
+          </p>
         </div>
       </header>
 
       <main className="container">
         <div className="search-section card">
-          <h2 style={{ marginBottom: '1rem' }}>Search for a Building</h2>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <h2>Find Your Building</h2>
+          <p style={{ color: '#6b7280', fontSize: '0.9375rem', marginBottom: '1.5rem', marginTop: '-0.5rem' }}>
+            Search by building name to discover nearby bus stops and arrival times
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <input
               type="text"
               className="search-input"
@@ -74,7 +80,7 @@ export default function Home() {
         )}
 
         {loading && (
-          <div className="loading">Loading...</div>
+          <div className="loading">Loading</div>
         )}
 
         {!loading && buildings.length > 0 && (
@@ -101,12 +107,12 @@ function BuildingCard({ building }: { building: Building }) {
       <div className="building-name">{building.name}</div>
       <div className="building-address">{building.streetAddress}</div>
       <div className="building-location">
-        Location: {building.location.latitude.toFixed(6)}, {building.location.longitude.toFixed(6)}
+        {building.location.latitude.toFixed(6)}, {building.location.longitude.toFixed(6)}
       </div>
 
       {building.nearbyStops && (
         <div className="stops-section">
-          <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>Nearby Bus Stops</h3>
+          <h3>Nearby Bus Stops</h3>
           
           {building.nearbyStops.northbound && (
             <StopCard stop={building.nearbyStops.northbound} direction="Northbound" />
@@ -117,7 +123,7 @@ function BuildingCard({ building }: { building: Building }) {
           )}
 
           {!building.nearbyStops.northbound && !building.nearbyStops.southbound && (
-            <div className="empty-state" style={{ padding: '1rem' }}>
+            <div className="empty-state" style={{ padding: '1rem', background: 'transparent', border: 'none' }}>
               No nearby bus stops found
             </div>
           )}
@@ -133,18 +139,18 @@ function StopCard({ stop, direction }: { stop: BusStopWithPredictions; direction
       <div className="stop-header">
         <div className="stop-name">{stop.stopName} - {direction}</div>
         {stop.distance !== undefined && (
-          <div className="stop-distance">{stop.distance.toFixed(2)} miles away</div>
+          <div className="stop-distance">{stop.distance.toFixed(2)} mi</div>
         )}
       </div>
       <div className="stop-details">
-        Route: {stop.route} | Stop ID: {stop.id} | {stop.location}
+        <span>Route: {stop.route}</span>
+        <span>Stop ID: {stop.id}</span>
+        <span>{stop.location}</span>
       </div>
 
       {stop.predictions && stop.predictions.length > 0 ? (
         <div className="predictions-list">
-          <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-            Arrival Predictions:
-          </div>
+          <div>Arrival Predictions:</div>
           {stop.predictions.map((prediction, index) => (
             <div key={index} className="prediction-item">
               <div>
@@ -153,7 +159,7 @@ function StopCard({ stop, direction }: { stop: BusStopWithPredictions; direction
                    prediction.arrivalTime === 'unknown' ? 'Time unknown' :
                    `${prediction.arrivalTime} min${prediction.arrivalTime !== '1' ? 's' : ''}`}
                 </span>
-                {' - '}
+                {' • '}
                 Vehicle #{prediction.vehicleId} on route {prediction.route} 
                 {' '}({prediction.direction})
               </div>
@@ -161,7 +167,7 @@ function StopCard({ stop, direction }: { stop: BusStopWithPredictions; direction
           ))}
         </div>
       ) : (
-        <div style={{ color: '#999', fontStyle: 'italic', marginTop: '0.5rem' }}>
+        <div style={{ color: '#999', fontStyle: 'italic', marginTop: '0.5rem', padding: '0.5rem' }}>
           No predictions available
         </div>
       )}
