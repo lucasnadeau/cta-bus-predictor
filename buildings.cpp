@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 #include <cassert>
+#include <algorithm>
+#include <cctype>
 
 #include "buildings.h"
 #include "osm.h"
@@ -114,9 +116,18 @@ void Buildings::findAndPrint(const string& name, const Nodes& nodes, const BusSt
 {
   bool foundAtLeastOne = false;
  // const Building* building = nullptr;
+  
+  // Convert search name to lowercase for case-insensitive comparison
+  string searchNameLower = name;
+  transform(searchNameLower.begin(), searchNameLower.end(), searchNameLower.begin(), ::tolower);
+  
   for (Building& B : this->MapBuildings)
   {
-    if (B.Name.find(name) != string::npos)
+    // Convert building name to lowercase for case-insensitive comparison
+    string buildingNameLower = B.Name;
+    transform(buildingNameLower.begin(), buildingNameLower.end(), buildingNameLower.begin(), ::tolower);
+    
+    if (buildingNameLower.find(searchNameLower) != string::npos)
     {
       foundAtLeastOne = true;
       B.print(nodes);
