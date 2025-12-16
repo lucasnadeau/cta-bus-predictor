@@ -15,7 +15,7 @@ This C++ project parses OpenStreetMap (OSM) data to locate Chicago Transit Autho
 
 - **C++17**
 - **libcurl** for HTTP requests
-- **TinyXML2** (or whichever XML parser you used) for parsing OSM files
+- **TinyXML2** for parsing OSM files
 - **CTA Bus Tracker API**: [bustime API](http://www.ctabustracker.com/bustime/)
 
 
