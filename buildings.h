@@ -12,6 +12,7 @@
 #include "building.h"
 #include "tinyxml2.h"
 #include "busstops.h"
+#include "curl_util.h"
 
 
 using namespace std;
@@ -52,6 +53,6 @@ public:
   //
   // searches and prints over the buildings class
   //
-void findAndPrint(const string& name, const Nodes& nodes, const BusStops& busStops);
+void findAndPrint(const string& name, const Nodes& nodes, const BusStops& busStops, CURL* curl, const string& apiKey);
 };
 
