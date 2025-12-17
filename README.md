@@ -34,6 +34,7 @@ This project consists of a C++ REST API backend and a Next.js web frontend that 
   - macOS: `brew install curl`
   - Linux: `sudo apt install libcurl4-openssl-dev`
 - `pthread`
+- CTA Bus Tracker API key
 
 ### Frontend
 - Node.js 18+ and npm
@@ -41,6 +42,18 @@ This project consists of a C++ REST API backend and a Next.js web frontend that 
 ## Build & Compile
 
 ### Backend Server
+
+Acquire a CTA Bus Tracker API key from the CTA Bus Tracker website.
+
+```bash
+https://www.ctabustracker.com/bustime/
+```
+
+Set the `CTA_BUS_TRACKER_API_KEY` environment variable to your API key.
+
+```bash
+export CTA_BUS_TRACKER_API_KEY=YOUR_API_KEY
+```
 
 ```bash
 cd backend

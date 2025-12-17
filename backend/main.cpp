@@ -31,7 +31,7 @@ int main()
   Nodes nodes;
   Buildings buildings;
 
-  string apiKey = "kyLuFuPPDav4yBC7gCJ2RFz58";
+  string apiKey = "ENTER YOUR API KEY HERE";
 
 
   

@@ -16,6 +16,19 @@ C++ REST API server for the CTA Bus Predictor application.
   - macOS: `brew install curl`
   - Linux: `sudo apt install libcurl4-openssl-dev`
 - `pthread` library (usually included with compiler)
+- CTA Bus Tracker API key
+
+Acquire a CTA Bus Tracker API key from the CTA Bus Tracker website.
+
+```bash
+https://www.ctabustracker.com/bustime/
+```
+
+Set the `CTA_BUS_TRACKER_API_KEY` environment variable to your API key.
+
+```bash
+export CTA_BUS_TRACKER_API_KEY=YOUR_API_KEY
+```
 
 ## Build
 
